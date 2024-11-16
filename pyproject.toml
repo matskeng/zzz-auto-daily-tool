@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.poetry]
+name = "zzz_auto_daily_tool"
+version = "0.0.1"
+description = "ZZZ Auto Daily Tool"
+authors = ["matskeng <matskeng0205@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyautogui = "^0.9.54"
+opencv-python = "^4.7.0"
+Pillow = "^9.5.0"
+numpy = "^1.24.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
