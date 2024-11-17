@@ -28,6 +28,8 @@ mihoyoランチャーからゲームを起動し、以下のタスクを自動�
   - pyautogui ^0.9.54
   - opencv-python ^4.7.0
   - Pillow ^9.5.0
+  - numpy = "^1.24.0"
+  - keyboard = "^0.13.5"
 
 ---
 
