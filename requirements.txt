@@ -3,4 +3,3 @@ opencv-python==4.7.0.72
 Pillow==9.5.0
 pytest==6.2.5
 numpy==1.24.0
-cx-Freeze==6.10.0
