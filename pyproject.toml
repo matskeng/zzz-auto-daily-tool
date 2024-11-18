@@ -15,6 +15,7 @@ opencv-python = "^4.7.0"
 Pillow = "^9.5.0"
 numpy = "^1.24.0"
 keyboard = "^0.13.5"
+random = "^1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
