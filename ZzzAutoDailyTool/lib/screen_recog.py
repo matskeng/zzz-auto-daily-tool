@@ -1,9 +1,11 @@
 import cv2
 import numpy as np
 import pyautogui
-import keyboard
 import time
 import random
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 # 画面認識を行い、指定した画像ファイルに一致するボタンをクリックする
 # img_file: 画像ファイル名
@@ -20,7 +22,7 @@ def rcg_and_click(img_file: str):
         # ボタンの画像を読み込む
         img = cv2.imread(img_file_path)
         if img is None:
-            raise FileNotFoundError(f"画像ファイルが読み込めません: {img_file_path}")
+            logger.error(f"画像ファイルが読み込めません: {img_file_path}")
         
         # ボタンの画像を画面の画像にマッチングさせる
         res = cv2.matchTemplate(screenshot_bgr, img, cv2.TM_CCOEFF_NORMED)
@@ -64,7 +66,7 @@ def rcg_and_click_while_loop(img_file: str, wait_loop: int):
         # ボタンの画像を読み込む
         img = cv2.imread(img_file_path)
         if img is None:
-            raise FileNotFoundError(f"画像ファイルが読み込めません: {img_file_path}")
+            logger.error(f"画像ファイルが読み込めません: {img_file_path}")
         
         # ボタンの画像を画面の画像にマッチングさせる
         res = cv2.matchTemplate(screenshot_bgr, img, cv2.TM_CCOEFF_NORMED)
@@ -84,10 +86,9 @@ def rcg_and_click_while_loop(img_file: str, wait_loop: int):
             pyautogui.moveTo(center_x, center_y, duration=0.2)
             time.sleep(1)
             pyautogui.click()
-            
-            return
-        
-        print(f"{img_file} が見つかりませんでした")
+            break
+        else:
+            logger.info(f"{img_file}が見つかりませんでした")
         
         # 1秒待つ
         time.sleep(1)
@@ -95,7 +96,7 @@ def rcg_and_click_while_loop(img_file: str, wait_loop: int):
         # ループ回数が指定回数に達したら関数を抜ける
         loop_cnt += 1
         if loop_cnt >= wait_loop:
-            return
+            break
 
 # 画面認識を行い、指定した画像ファイルに一致する範囲の座標を返す
 # 一定時間画像ファイルに一致するボタンが見つからない場合は関数を抜ける
@@ -115,7 +116,7 @@ def rcg_and_return_coords_while_loop(img_file: str, wait_loop: int):
         # ボタンの画像を読み込む
         img = cv2.imread(img_file_path)
         if img is None:
-            raise FileNotFoundError(f"画像ファイルが読み込めません: {img_file_path}")
+            logger.error(f"画像ファイルが読み込めません: {img_file_path}")
         
         # ボタンの画像を画面の画像にマッチングさせる
         res = cv2.matchTemplate(screenshot_bgr, img, cv2.TM_CCOEFF_NORMED)
@@ -123,8 +124,8 @@ def rcg_and_return_coords_while_loop(img_file: str, wait_loop: int):
         # 最大値とその位置を取得
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
         
-        # マッチング度が閾値(0.8)以上かどうかを確認する
-        if max_val >= 0.8:            
+        # マッチング度が閾値(0.95)以上かどうかを確認する
+        if max_val >= 0.95:            
             # ボタンの範囲の座標を返す
             button_width = img.shape[1]
             button_height = img.shape[0]
@@ -160,7 +161,7 @@ def rcg_and_click_in_area(img_file: str, top_left: tuple, bottom_right: tuple):
         # ボタンの画像を読み込む
         img = cv2.imread(img_file_path)
         if img is None:
-            raise FileNotFoundError(f"画像ファイルが読み込めません: {img_file_path}")
+            logger.error(f"画像ファイルが読み込めません: {img_file_path}")
         
         # ボタンの画像を調査する範囲の画像にマッチングさせる
         res = cv2.matchTemplate(area, img, cv2.TM_CCOEFF_NORMED)
@@ -201,7 +202,7 @@ def rcg_and_scratch(img_file: str):
         # ボタンの画像を読み込む
         img = cv2.imread(img_file_path)
         if img is None:
-            raise FileNotFoundError(f"画像ファイルが読み込めません: {img_file_path}")
+            logger.error(f"画像ファイルが読み込めません: {img_file_path}")
         
         # ボタンの画像を画面の画像にマッチングさせる
         res = cv2.matchTemplate(screenshot_bgr, img, cv2.TM_CCOEFF_NORMED)
