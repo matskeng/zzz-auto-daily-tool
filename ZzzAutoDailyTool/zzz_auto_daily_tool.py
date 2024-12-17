@@ -4,13 +4,13 @@ import logging
 from time import sleep
 
 # デバッグ用定数(Falseにした項目を実行しない)
-DO_START_GAME = False               # ゲームを起動する
-DO_GET_EVENT_LOGIN_REWARDS = False  # イベントのログイン報酬を受け取る
-DO_GET_INTERNOT_REWARDS = False     # インターノット会員報酬を受け取る
-DO_DRINK_COFFEE = False             # コーヒーを飲む
-DO_SCRATCH = False                  # スクラッチを行う
-DO_BUSINESS_VIDEO_STORE = False     # ビデオ屋を営業する
-DO_GET_ACTIVITY_REWARDS = False     # 活躍度報酬を受け取る
+DO_START_GAME = True               # ゲームを起動する
+DO_GET_EVENT_LOGIN_REWARDS = True  # イベントのログイン報酬を受け取る
+DO_GET_INTERNOT_REWARDS = True     # インターノット会員報酬を受け取る
+DO_DRINK_COFFEE = True             # コーヒーを飲む
+DO_SCRATCH = True                  # スクラッチを行う
+DO_BUSINESS_VIDEO_STORE = True     # ビデオ屋を営業する
+DO_GET_ACTIVITY_REWARDS = True     # 活躍度報酬を受け取る
 DO_CONSUME_BATTERY = True          # バッテリーを消化する
 
 # ツールのメイン処理

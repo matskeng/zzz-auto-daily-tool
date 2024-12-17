@@ -1,5 +1,6 @@
 import keyboard
 import time
+import pyautogui
 from logging import getLogger
 from . import screen_recog as sr
 
@@ -232,23 +233,26 @@ def get_activity_rewards():
     time.sleep(0.1)
     keyboard.release('f2')
     
-    # 活躍度ゲージをクリック
-    res = sr.rcg_and_click_while_loop("activity_gauge.png", 1)
-    if res is False:
-        logger.info("活躍度報酬は受け取り済みでした")
+    # 活躍度ゲージをクリックする
+    # 本日の最大活躍度パネルの座標を取得
+    top_left, bottom_right = sr.rcg_and_return_coords_while_loop("panel_max_activity.png", 2)
+    # 本日の最大活躍度パネルが表示されなかった場合は関数を抜ける
+    if top_left is None:
+        logger.info("本日の最大活躍度パネルが表示されませんでした")
+    else:
+        # 右辺の中点の座標を計算
+        mid_x = bottom_right[0]
+        mid_y = (top_left[1] + bottom_right[1]) // 2
+        # 右辺の中点から右に10ピクセル移動した座標をクリック
+        pyautogui.click(mid_x + 10, mid_y)
         
-        # F2キーを押す
-        keyboard.press('f2')
-        time.sleep(0.1)
-        keyboard.release('f2')
+        # OKボタンをクリック
+        res = sr.rcg_and_click_while_loop("button_ok.png", 2)
+        if res is False:
+            logger.info("活躍度報酬を受け取れませんでした")
         
         # 1秒待つ
         time.sleep(1)
-        
-        return
-    
-    # OKボタンをクリック
-    sr.rcg_and_click("button_ok.png")
     
     # F2キーを押す
     keyboard.press('f2')
@@ -270,6 +274,10 @@ def consume_battery():
     
     # 「現在のバッテリー」の座標を取得
     top_left, bottom_right = sr.rcg_and_return_coords_while_loop("current_battery.png", 2)
+    # 「現在のバッテリー」が表示されなかった場合は関数を抜ける
+    if top_left is None:
+        logger.info("現在のバッテリー値が表示されませんでした")
+        return
     
     # 現在のバッテリー値を取得
     current_battery = sr.get_battery_value(top_left, bottom_right)

@@ -94,9 +94,6 @@ def rcg_and_click_while_loop(img_file: str, wait_loop: int):
             time.sleep(1)
             pyautogui.click()
             return True
-            
-        else:
-            logger.info(f"{img_file}が見つかりませんでした")
         
         # 1秒待つ
         time.sleep(1)
@@ -104,6 +101,7 @@ def rcg_and_click_while_loop(img_file: str, wait_loop: int):
         # ループ回数が指定回数に達したら関数を抜ける
         loop_cnt += 1
         if loop_cnt >= wait_loop:
+            logger.info(f"{img_file}が見つかりませんでした")
             return False
 
 # 画面認識を行い、指定した画像ファイルに一致する範囲の座標を返す
