@@ -1,61 +1,12 @@
 import keyboard
 import time
 import pyautogui
+import json
 from logging import getLogger
 from . import screen_recog as sr
 
 logger = getLogger(__name__)
-
-# HoYoPlayランチャーからゲームを起動する関数
-def start_game():
-    logger.info("ゲームを起動します")
-    
-    # ZZZのアイコンをクリック
-    sr.rcg_and_click("launcher_zzz.png")
-    
-    # ゲーム開始のボタンをクリック
-    sr.rcg_and_click("launcher_start_game.png")
-    
-    # ゲーム内でゲーム開始が表示されたらクリック
-    sr.rcg_and_click("zzz_start_game.png")
-    
-    # ゲーム内でコンフィグデータロード中が表示されたらクリック
-    # (クリックする必要はないが、画面が切り替わるのを待つために挟む)
-    sr.rcg_and_click("loading_config_data.png")
-    
-    # ゲーム内でゲーム開始が表示されたらクリック(2回目)
-    sr.rcg_and_click("zzz_start_game.png")
-
-def get_event_login_rewards():
-    logger.info("イベントのログイン報酬を受け取ります")
-    
-    # イベントのログイン報酬を受け取るボタンをクリック
-    res = sr.rcg_and_click_while_loop("event_login_reward.png", 10)
-    if res is False:
-        logger.info("イベントのログイン報酬を受け取れませんでした")
-    else:
-        # OKボタンをクリック
-        sr.rcg_and_click("button_ok.png")
-        
-        # 戻るボタンをクリック
-        sr.rcg_and_click("button_return.png")
-    
-    # 1秒待つ
-    time.sleep(1)
-
-
-# インターノット会員報酬を受け取る関数
-def get_internot_rewards():
-    logger.info("インターノット会員報酬を受け取ります")
-    
-    # インターノット会員報酬を受け取るボタンをクリック
-    res = sr.rcg_and_click_while_loop("internot_reward.png", 10)
-    if res is False:
-        logger.info("インターノット会員報酬を受け取れませんでした")
-    
-    # 3秒待つ
-    time.sleep(3)
-
+user_setting_path = "config/user_setting.json"
 
 # コーヒーを飲む関数
 def drink_coffee():
@@ -267,6 +218,15 @@ def get_activity_rewards():
 def consume_battery():
     logger.info("バッテリーを消化します")
     
+    # user_config.jsonを読み込む
+    with open(user_setting_path, "r", encoding="utf-8") as f:
+        setting = json.load(f)
+    
+    # バッテリーを消化する種目の設定
+    category1 = setting["category1"]
+    category2 = setting["category2"]
+    category3 = setting["category3"]
+    
     # F2キーを押す
     keyboard.press('f2')
     time.sleep(0.1)
@@ -283,12 +243,17 @@ def consume_battery():
     current_battery = sr.get_battery_value(top_left, bottom_right)
     logger.info(f"現在のバッテリー値: {current_battery}")
     
-    # 基本素材でバッテリーを消化する
-    # 基本素材パネルの座標を取得
-    top_left, bottom_right = sr.rcg_and_return_coords_while_loop("panel_basic_material.png", 2)
-    if top_left is None:
-        logger.info("基本素材パネルが見つかりませんでした")
-        return
+    # カテゴリ1の選択
+    if category1 != "mock_practice":
+        sr.rcg_and_click(f"category1_{category1}.png")
+     
+    
+    # # 基本素材でバッテリーを消化する
+    # # 基本素材パネルの座標を取得
+    # top_left, bottom_right = sr.rcg_and_return_coords_while_loop("panel_basic_material.png", 2)
+    # if top_left is None:
+    #     logger.info("基本素材パネルが見つかりませんでした")
+    #     return
 
     # パネル内のgoボタンをクリック
     sr.rcg_and_click_in_area("button_go_in_panel.png", top_left, bottom_right)
