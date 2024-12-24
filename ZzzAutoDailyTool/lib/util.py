@@ -77,9 +77,13 @@ def click_img(img_file: str, wait_time=0) -> bool:
         time.sleep(0.1)
 
 # 指定された画像ファイル1内に表示される画像ファイル2をクリックする
-def click_img_in_img(img_file1: str, img_file2: str):
+def click_img_in_img(img_file1: str, img_file2: str, wait_time: int = 0) -> bool:
     logger.info(f"{img_file1}内に表示される{img_file2}をクリックします")
     
+    # ループ回数を計算
+    loop_max = wait_time / 0.1
+    
+    loop_cnt = 0
     while True:
         # 画像1の座標を取得
         width1, height1, loc1 = _check_img(img_file1)
@@ -91,7 +95,13 @@ def click_img_in_img(img_file1: str, img_file2: str):
                 x = loc1[0] + loc2[0] + width2 // 2
                 y = loc1[1] + loc2[1] + height2 // 2
                 _click(x, y)
-                return
+                return True
+        
+        # ループを抜けるかどうか判定
+        loop_cnt += 1
+        if loop_max != 0 and loop_cnt >= loop_max:
+            logger.info(f"{img_file1}の中に{img_file2}が表示されませんでした")
+            return False
         
         time.sleep(0.1)
 
@@ -179,3 +189,9 @@ def click_until_img_displayed(img_file: str):
         
         # 0.1 ~ 0.5秒待つ
         time.sleep(random.uniform(0.1, 0.5))
+
+# 指定されたキーを押す
+def press_key(key: str):    
+    keyboard.press(key)
+    time.sleep(0.1)
+    keyboard.release(key)
