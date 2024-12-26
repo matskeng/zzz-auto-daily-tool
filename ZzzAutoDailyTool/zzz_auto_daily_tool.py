@@ -1,6 +1,4 @@
-from ZzzAutoDailyTool.lib import logger
-from ZzzAutoDailyTool.lib import start
-from ZzzAutoDailyTool.lib import tasks
+from .lib import logger, start, tasks
 
 # デバッグ用定数(Falseにした項目を実行しない)
 DO_START_GAME = True               # ゲームを起動する

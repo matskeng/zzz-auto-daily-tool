@@ -8,6 +8,7 @@ import keyboard
 import logging
 
 logger = logging.getLogger(__name__)
+image_dir = "assets\\images\\"
 
 # 指定された座標をクリックする
 def _click(x: int, y: int):
@@ -29,7 +30,8 @@ def _check_img(img_file: str, top_left: tuple = None, bottom_right: tuple = None
         screenshot_bgr = screenshot_bgr[top_left[1]:bottom_right[1], top_left[0]:bottom_right[0]]
 
     # 画像を読み込む
-    img = cv2.imread(img_file)
+    img_file_path = image_dir + img_file
+    img = cv2.imread(img_file_path)
     if img is None:
         logger.error(f"画像ファイルが読み込めません: {img_file}")
 
@@ -166,7 +168,7 @@ def wait_until_img_displayed(img_file: str):
     
     # 画像が表示されるまでループ
     while True:
-        width, height, loc = _check_img()
+        width, height, loc = _check_img(img_file)
         if width is not None:
             return
         
@@ -178,7 +180,7 @@ def click_until_img_displayed(img_file: str):
     
     # 画像が表示されるまでループ
     while True:
-        width, height, loc = _check_img()
+        width, height, loc = _check_img(img_file)
         if width is not None:
             return
         
@@ -195,3 +197,13 @@ def press_key(key: str):
     keyboard.press(key)
     time.sleep(0.1)
     keyboard.release(key)
+
+# 2つの画像ファイルのうち、どちらが表示されているかを判定する
+def which_img_displayed(img_files: list[str]) -> int:
+    logger.info(f"{img_files}のうち、どちらが表示されているかを判定します")
+    
+    while True:
+        for img_file in img_files:
+            width, height, loc = _check_img(img_file)
+            if width is not None:
+                return img_files.index(img_file)

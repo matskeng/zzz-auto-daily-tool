@@ -1,5 +1,5 @@
 import logging
-import util
+from . import util
 
 logger = logging.getLogger(__name__)
 
@@ -13,11 +13,7 @@ def _drink_coffee():
     util.press_key("f2")
     
     # コーヒーを飲むパネルの中のGOボタンをクリック
-    ret = util.click_img_in_img("task_drink_coffee.png", "button_go.png", 1)
-    if not ret:
-        logger.info("コーヒーは既に飲んでいるようです")
-        return
-
+    util.click_img_in_img("task_drink_coffee.png", "button_go.png")
     # OKボタンをクリック
     util.click_img("button_ok.png")
     # 注文ボタンをクリック
@@ -35,11 +31,7 @@ def _scratch():
     util.press_key("f2")
     
     # スクラッチパネルの中のGOボタンをクリック
-    ret = util.click_img_in_img("task_scratch.png", "button_go.png", 1)
-    if not ret:
-        logger.info("スクラッチは既に終わっているようです")
-        return
-    
+    util.click_img_in_img("task_scratch.png", "button_go.png")
     # OKボタンをクリック
     util.click_img("button_ok.png")
     # スクラッチカードをクリック
@@ -63,25 +55,13 @@ def _operate_video_shop():
     util.press_key("f2")
     
     # ビデオ屋のパネルの中のGOボタンをクリック
-    ret = util.click_img_in_img("task_video_shop.png", "button_go.png", 1)
-    if not ret:
-        logger.info("ビデオ屋は既に営業しているようです")
-        return
-    
+    util.click_img_in_img("task_video_shop.png", "button_go.png")
     # OKボタンをクリック
     util.click_img("button_ok.png")
-    
     # 閉じるボタンをクリック
-    res = util.click_img("button_close.png", 1)
-    if not res:
-        logger.info("ビデオ屋の売上は受領済みのようです")
-    
+    util.click_img("button_close.png")
     # 販促担当設定ボタンをクリック
-    util.click_img("promotion_staff.png", 1)
-    if not res:
-        logger.info("販促担当設定ボタンが見つかりませんでした")
-        return
-    
+    util.click_img("promotion_staff.png")    
     # OKボタンをクリック
     util.click_img("button_ok.png")
     # 品出しボタンをクリック
@@ -107,10 +87,7 @@ def _receive_activity_reward():
     util.press_key("f2")
     
     # 本日の最大活躍度パネルをクリック
-    ret = util.click_img("panel_max_activity.png", 1)
-    if not ret:
-        logger.info("活躍度報酬は既に受け取っているようです")
-    
+    util.click_img("panel_max_activity.png")
     # F2キーを押す
     util.press_key("f2")
 

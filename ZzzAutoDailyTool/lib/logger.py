@@ -4,7 +4,7 @@ import logging
 # ログを設定する関数
 def setting_logger():
     # ロガーを設定
-    log_filename = "log\\" + datetime.now().strftime("%Y%m%d%H%M%S") + ".log"
+    log_filename = "log\\" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S") + ".log"
     logging.basicConfig(
         level=logging.DEBUG,                                # ログレベルを設定
         format='%(asctime)s - %(levelname)s - %(message)s', # フォーマットを指定
