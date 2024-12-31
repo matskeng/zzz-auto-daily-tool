@@ -1,8 +1,8 @@
-from .lib import logger, start, tasks
+from .lib import logger, start, tasks, battery
 
 # デバッグ用定数(Falseにした項目を実行しない)
-DO_START_GAME = True               # ゲームを起動する
-DO_TASKS = True                    # デイリータスクを実行する
+DO_START_GAME = False               # ゲームを起動する
+DO_TASKS = False                    # デイリータスクを実行する
 DO_CONSUME_BATTERY = True          # バッテリーを消化する
 
 # ツールのメイン処理
@@ -14,10 +14,10 @@ def main():
     if DO_START_GAME:
         start.start_game()
     
-    # コーヒーを飲む
+    # デイリータスクを消化する
     if DO_TASKS:
         tasks.do_daily_tasks()
     
     # バッテリーを消化する
     if DO_CONSUME_BATTERY:
-        control_game.consume_battery()
+       battery.use_battery()

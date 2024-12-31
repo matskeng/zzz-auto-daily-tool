@@ -1,4 +1,5 @@
 import logging
+import time
 from . import util
 
 logger = logging.getLogger(__name__)
@@ -18,6 +19,8 @@ def _drink_coffee():
     util.click_img("button_ok.png")
     # 注文ボタンをクリック
     util.click_img("button_order.png")
+    # スキップボタンをクリック
+    util.click_img("button_skip.png")
     # OKボタンをクリック
     util.click_img("button_ok.png")
 
@@ -88,6 +91,9 @@ def _receive_activity_reward():
     
     # 本日の最大活躍度パネルをクリック
     util.click_img("panel_max_activity.png")
+    # OKボタンをクリック
+    util.click_img("button_ok.png")
+    time.sleep(0.1)
     # F2キーを押す
     util.press_key("f2")
 
