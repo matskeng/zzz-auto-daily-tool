@@ -93,7 +93,7 @@ def _receive_activity_reward():
     util.click_img("panel_max_activity.png")
     # OKボタンをクリック
     util.click_img("button_ok.png")
-    time.sleep(0.1)
+    time.sleep(0.2)
     # F2キーを押す
     util.press_key("f2")
 

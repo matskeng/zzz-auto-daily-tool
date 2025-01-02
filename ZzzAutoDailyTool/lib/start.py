@@ -1,4 +1,5 @@
 import logging
+import time
 from . import util
 
 logger = logging.getLogger(__name__)
@@ -36,6 +37,7 @@ def _get_login_event_rewards():
         util.click_img("button_ok.png")
         # 戻るボタンをクリック
         util.click_img("button_return.png")
+        time.sleep(0.2)
     else:
         logger.info("ログインイベント期間外のようです")
 

@@ -1,8 +1,8 @@
 from .lib import logger, start, tasks, battery
 
 # デバッグ用定数(Falseにした項目を実行しない)
-DO_START_GAME = False               # ゲームを起動する
-DO_TASKS = False                    # デイリータスクを実行する
+DO_START_GAME = True               # ゲームを起動する
+DO_TASKS = True                    # デイリータスクを実行する
 DO_CONSUME_BATTERY = True          # バッテリーを消化する
 
 # ツールのメイン処理

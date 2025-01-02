@@ -14,6 +14,10 @@ def _get_current_battery() -> int:
     # F2キーを押す
     util.press_key("f2")
     
+    # 訓練タブが表示されていない場合、タブを切り替える
+    if util.which_img_displayed(["panel_practice_not_chosen.png", "panel_practice_chosen.png"]) == 0:
+        util.click_img("panel_practice_not_chosen.png")
+    
     # 所持バッテリー値を確認する
     width, height, loc = util.wait_until_img_displayed("current_battery.png")
     current_battery = util.get_val_in_img((loc[0]+width, loc[1]), (loc[0]+width+65, loc[1]+height))
@@ -73,8 +77,9 @@ def _set_enemy_count(category3: str, enemy_count: int):
 # 戦闘を行う
 def _battle(battle_key: str):
     logger.info('戦闘を行います')
-    
+        
     # 完了ボタンが表示されるまで、通常攻撃のキーを連打する
+    time.sleep(0.2)
     util.press_key_until_img_displayed("button_complete.png", battle_key)
     
 # バッテリーがなくなるまで戦闘を行う
@@ -123,7 +128,26 @@ def _battle_until_battery_empty(battery: int, category1: str, category2: str, ca
             # 完了ボタンをクリック
             util.click_img("button_complete.png")
     else:
-        battery_usage = 40
+        # 戦闘回数を計算
+        battle_num = battery // 40
+        # 戦闘を行う
+        for battle_count in range(battle_num):
+                # 初回
+                if battle_count == 0:
+                    # 次へボタンをクリック
+                    util.click_img("button_next.png")
+                    # 出撃ボタンをクリック
+                    util.click_img("button_sortie.png")
+                    # 戦闘を行う
+                    _battle(battle_key)
+                # 2回目以降
+                else:
+                    # リトライボタンをクリック
+                    util.click_img("button_retry.png")
+                    # 戦闘を行う
+                    _battle(battle_key)
+        # 完了ボタンをクリック
+        util.click_img("button_complete.png")
     
     # 戻るボタンをクリック
     util.click_img("button_return.png")
@@ -145,7 +169,3 @@ def use_battery():
     
     # バッテリーがなくなるまで戦闘を行う
     _battle_until_battery_empty(current_battery, category1, category2, category3, battle_key)
-    
-    
-    
-    
