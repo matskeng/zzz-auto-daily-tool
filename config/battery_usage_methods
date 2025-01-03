@@ -1,0 +1,214 @@
+{
+    "items": [
+        {
+            "id" : 1,
+            "category1" : "mock_practice",
+            "category2" : "basic_materials",
+            "category3" : "character_exp"
+        },
+        {
+            "id" : 2,
+            "category1" : "mock_practice",
+            "category2" : "basic_materials",
+            "category3" : "music_exp"
+        },
+        {
+            "id" : 3,
+            "category1" : "mock_practice",
+            "category2" : "basic_materials",
+            "category3" : "disc_exp"
+        },
+        {
+            "id" : 4,
+            "category1" : "mock_practice",
+            "category2" : "basic_materials",
+            "category3" : "money"
+        },
+        {
+            "id" : 5,
+            "category1" : "mock_practice",
+            "category2" : "level_up",
+            "category3" : "level_up_attack"
+        },
+        {
+            "id" : 6,
+            "category1" : "mock_practice",
+            "category2" : "level_up",
+            "category3" : "level_up_break"
+        },
+        {
+            "id" : 7,
+            "category1" : "mock_practice",
+            "category2" : "level_up",
+            "category3" : "level_up_abnormal"
+        },
+        {
+            "id" : 8,
+            "category1" : "mock_practice",
+            "category2" : "level_up",
+            "category3" : "level_up_support"
+        },
+        {
+            "id" : 9,
+            "category1" : "mock_practice",
+            "category2" : "level_up",
+            "category3" : "level_up_defense"
+        },
+        {
+            "id" : 10,
+            "category1" : "mock_practice",
+            "category2" : "modify_sound_motor",
+            "category3" : "music_attack"
+        },
+        {
+            "id" : 11,
+            "category1" : "mock_practice",
+            "category2" : "modify_sound_motor",
+            "category3" : "music_break"
+        },
+        {
+            "id" : 12,
+            "category1" : "mock_practice",
+            "category2" : "modify_sound_motor",
+            "category3" : "music_abnormal"
+        },
+        {
+            "id" : 13,
+            "category1" : "mock_practice",
+            "category2" : "modify_sound_motor",
+            "category3" : "music_support"
+        },
+        {
+            "id" : 14,
+            "category1" : "mock_practice",
+            "category2" : "modify_sound_motor",
+            "category3" : "music_defense"
+        },
+        {
+            "id" : 15,
+            "category1" : "mock_practice",
+            "category2" : "skill",
+            "category3" : "skill_physical"
+        },
+        {
+            "id" : 16,
+            "category1" : "mock_practice",
+            "category2" : "skill",
+            "category3" : "skill_fire"
+        },
+        {
+            "id" : 17,
+            "category1" : "mock_practice",
+            "category2" : "skill",
+            "category3" : "skill_ice"
+        },
+        {
+            "id" : 18,
+            "category1" : "mock_practice",
+            "category2" : "skill",
+            "category3" : "skill_thunder"
+        },
+        {
+            "id" : 19,
+            "category1" : "mock_practice",
+            "category2" : "skill",
+            "category3" : "skill_ether"
+        },
+        {
+            "id" : 20,
+            "category1" : "regular_sweeep",
+            "category2" : "monster_duetto",
+            "category3" : null
+        },
+        {
+            "id" : 21,
+            "category1" : "regular_sweeep",
+            "category2" : "hunter_and_wesen",
+            "category3" : null
+        },
+        {
+            "id" : 22,
+            "category1" : "regular_sweeep",
+            "category2" : "sharp_fang_and_blunt_axe",
+            "category3" : null
+        },
+        {
+            "id" : 23,
+            "category1" : "regular_sweeep",
+            "category2" : "madman_and_follower",
+            "category3" : null
+        },
+        {
+            "id" : 24,
+            "category1" : "regular_sweeep",
+            "category2" : "tall_tower_and_giant_cannon",
+            "category3" : null
+        },
+        {
+            "id" : 25,
+            "category1" : "regular_sweeep",
+            "category2" : "hunter_and_royale_dog",
+            "category3" : null
+        },
+        {
+            "id" : 26,
+            "category1" : "regular_sweeep",
+            "category2" : "bad_fist_and_bad_gun",
+            "category3" : null
+        },
+        {
+            "id" : 27,
+            "category1" : "regular_sweeep",
+            "category2" : "monster_and_monstrous_guest",
+            "category3" : null
+        },
+        {
+            "id" : 28,
+            "category1" : "challenge_expert",
+            "category2" : "trachian",
+            "category3" : null
+        },
+        {
+            "id" : 29,
+            "category1" : "challenge_expert",
+            "category2" : "doppelganger_shane",
+            "category3" : null
+        },
+        {
+            "id" : 30,
+            "category1" : "challenge_expert",
+            "category2" : "strong_armed_ruffian",
+            "category3" : null
+        },
+        {
+            "id" : 31,
+            "category1" : "challenge_expert",
+            "category2" : "tuporn_slugger",
+            "category3" : null
+        },
+        {
+            "id" : 32,
+            "category1" : "challenge_expert",
+            "category2" : "hans_livestock_energy_type",
+            "category3" : null
+        },
+        {
+            "id" : 33,
+            "category1" : "challenge_expert",
+            "category2" : "warning_required_armor_hattie",
+            "category3" : null
+        },
+        {
+            "id" : 34,
+            "category1" : "challenge_expert",
+            "category2" : "the_source_punching_bag_with_bill",
+            "category3" : null
+        },
+        {
+            "id" : 35,
+            "category1" : "challenge_expert",
+            "category2" : "warning_required_dullahan",
+            "category3" : null
+        }
+    ]
+}
