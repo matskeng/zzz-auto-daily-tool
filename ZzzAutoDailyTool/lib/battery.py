@@ -32,12 +32,24 @@ def _load_user_setting() -> tuple:
     # user_config.jsonを読み込む
     with open("config\\user_setting.json", "r", encoding="utf-8") as f:
         setting = json.load(f)
-    
-    # バッテリーを消化する種目の設定
-    category1 = setting["category1"]
-    category2 = setting["category2"]
-    category3 = setting["category3"]
+        
+    # 戦闘で使用するキーを取得
     battle_key = setting["battle_key"]
+    
+    # バッテリー使用方法のidを取得
+    id = setting["battery_usage_id"]
+    
+    # battery_usage_methods.jsonを読み込む
+    with open("config\\battery_usage_methods.json", "r", encoding="utf-8") as f:
+        battery_usage_methods = json.load(f)
+        
+        # idが一致する要素を検索
+        for method in battery_usage_methods["methods"]:
+            if method["id"] == id:
+                category1 = method["category1"]
+                category2 = method["category2"]
+                category3 = method["category3"]
+                break
     
     return category1, category2, category3, battle_key
 
@@ -79,7 +91,7 @@ def _battle(battle_key: str):
     logger.info('戦闘を行います')
         
     # 完了ボタンが表示されるまで、通常攻撃のキーを連打する
-    time.sleep(0.2)
+    time.sleep(1)
     util.press_key_until_img_displayed("button_complete.png", battle_key)
     
 # バッテリーがなくなるまで戦闘を行う

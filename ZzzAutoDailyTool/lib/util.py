@@ -49,7 +49,7 @@ def _find_img(img_file: str, top_left: tuple = None, bottom_right: tuple = None)
         # 画像の大きさと座標を返す
         width = img.shape[1]
         height = img.shape[0]
-        loc = max_loc        
+        loc = max_loc
         return width, height, loc
     else:
         return None, None, None
